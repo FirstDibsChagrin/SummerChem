@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Chem Academy — From Atoms to Acids</title>
+<meta name="description" content="An animated, interactive course that takes you from the basics of chemistry all the way through your AP Chemistry summer homework.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="bg-particles"></canvas>
+<div class="aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+<!-- ============ NAV ============ -->
+<nav id="topnav">
+  <div class="nav-inner">
+    <a href="#hero" class="brand"><span class="brand-orb"></span>AP&nbsp;Chem&nbsp;<em>Academy</em></a>
+    <div class="nav-links" id="nav-links">
+      <a href="#ch1">Measure</a><a href="#ch2">Matter</a><a href="#ch3">Atoms</a>
+      <a href="#ch4">Table</a><a href="#ch5">Light</a><a href="#ch6">Trends</a>
+      <a href="#ch7">Ions</a><a href="#ch8">Naming</a><a href="#ch9">Reactions</a>
+      <a href="#ch10">Moles</a><a href="#ch11">Molarity</a><a href="#ch12">Acids</a>
+      <a href="#homework" class="hw-link">Homework ✦</a>
+    </div>
+  </div>
+  <div class="scroll-progress" id="scroll-progress"></div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="hero">
+  <div class="atom-stage">
+    <div class="atom">
+      <div class="nucleus"></div>
+      <div class="orbit o1"><span class="electron"></span></div>
+      <div class="orbit o2"><span class="electron"></span></div>
+      <div class="orbit o3"><span class="electron"></span></div>
+    </div>
+  </div>
+  <h1 class="hero-title"><span class="grad-text">Chemistry,</span><br>from zero to <span class="grad-text2">AP&nbsp;ready.</span></h1>
+  <p class="hero-sub">An animated crash course that starts at “what is an atom?” and ends with every single
+  problem on your summer homework — worked out, step by step.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#ch1">Start learning <span class="arrow">→</span></a>
+    <a class="btn btn-ghost" href="#homework">Jump to homework</a>
+  </div>
+  <div class="floating-chips" aria-hidden="true">
+    <span class="chip">H₂O</span><span class="chip">NaCl</span><span class="chip">SO₄²⁻</span>
+    <span class="chip">PV = nRT</span><span class="chip">6.022×10²³</span><span class="chip">CH₄</span>
+    <span class="chip">Fe³⁺</span><span class="chip">E = hν</span>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</header>
+
+<main>
+
+<!-- ============ CHAPTER 1 — MEASUREMENT ============ -->
+<section class="chapter" id="ch1">
+  <div class="ch-head reveal"><span class="ch-num">01</span><h2>Measurement &amp; Math Toolkit</h2>
+  <p>Chemistry is a quantitative science. Before anything else, you need the four math tools every AP problem uses:
+  <strong>significant figures, scientific notation, percent error,</strong> and <strong>unit conversion.</strong></p></div>
+
+  <div class="grid2">
+    <div class="card reveal">
+      <h3>🔢 Significant Figures — the rules</h3>
+      <ul class="rule-list">
+        <li><b>Non-zero digits</b> always count. <code>457</code> → 3 sig figs</li>
+        <li><b>Sandwiched zeros</b> (between non-zeros) count. <code>2001</code> → 4</li>
+        <li><b>Leading zeros</b> never count. <code>0.0052</code> → 2</li>
+        <li><b>Trailing zeros</b> count <em>only</em> with a decimal point. <code>100</code> → 1, but <code>100.</code> → 3 and <code>1.00×10³</code> → 3</li>
+      </ul>
+      <div class="callout">Multiplying / dividing → answer keeps the <b>fewest sig figs</b>.<br>
+      Adding / subtracting → answer keeps the <b>fewest decimal places</b>.</div>
+    </div>
+    <div class="card widget reveal">
+      <h3>⚡ Try it: Sig-Fig Counter</h3>
+      <p class="muted">Type any number (use <code>e</code> for ×10ⁿ, e.g. <code>1.00e3</code>):</p>
+      <input id="sf-input" type="text" placeholder="e.g. 0.0050900" autocomplete="off">
+      <div class="widget-out" id="sf-out">—</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card reveal">
+      <h3>🧮 Scientific Notation</h3>
+      <p>Write any number as <code>a × 10ⁿ</code> where <code>1 ≤ a &lt; 10</code>. Move the decimal point; count the moves.</p>
+      <div class="example-box">
+        <div><code>35,900</code> → decimal moves <b>4 left</b> → <code>3.59 × 10⁴</code></div>
+        <div><code>0.00031</code> → decimal moves <b>4 right</b> → <code>3.1 × 10⁻⁴</code></div>
+      </div>
+      <div class="callout">Scientific notation is also how you <em>control</em> sig figs:
+      480 to 1 sf is <code>5 × 10²</code>, to 2 sf <code>4.8 × 10²</code>, to 3 sf <code>4.80 × 10²</code>.</div>
+    </div>
+    <div class="card reveal">
+      <h3>🎯 Percent Error</h3>
+      <div class="formula-hero">% error = <span class="frac"><span>|experimental − accepted|</span><span>accepted</span></span> × 100</div>
+      <div class="widget">
+        <div class="widget-row">
+          <input id="pe-exp" type="number" step="any" placeholder="experimental">
+          <input id="pe-acc" type="number" step="any" placeholder="accepted">
+        </div>
+        <div class="widget-out" id="pe-out">enter two values…</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card reveal">
+      <h3>🌡️ Temperature: Celsius ↔ Kelvin</h3>
+      <div class="formula-hero">K = °C + 273</div>
+      <p class="muted">Kelvin starts at absolute zero (−273 °C), the coldest anything can be — so Kelvin is never negative.</p>
+      <div class="widget">
+        <div class="widget-row">
+          <input id="tc-c" type="number" step="any" placeholder="°C">
+          <span class="swap">⇄</span>
+          <input id="tc-k" type="number" step="any" placeholder="K">
+        </div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <h3>🛤️ Dimensional Analysis — the conversion train</h3>
+      <p>Multiply by fractions equal to 1 so units cancel diagonally until only the unit you want survives:</p>
+      <div class="rail">
+        <span class="rail-cell">5 carat</span><span class="rail-x">×</span>
+        <span class="rail-cell frac2"><span>0.200 g</span><span>1 carat</span></span><span class="rail-x">×</span>
+        <span class="rail-cell frac2"><span>1 grain</span><span>0.0648 g</span></span><span class="rail-x">×</span>
+        <span class="rail-cell frac2"><span>1 pwt</span><span>24 grain</span></span><span class="rail-eq">=</span>
+        <span class="rail-cell rail-answer">0.643 pwt</span>
+      </div>
+      <div class="callout">Golden rule: the unit you want to <em>kill</em> goes on the <b>bottom</b> of the next fraction.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 2 — MATTER ============ -->
+<section class="chapter" id="ch2">
+  <div class="ch-head reveal"><span class="ch-num">02</span><h2>Classifying Matter</h2>
+  <p>Everything is made of particles. How those particles move and mix determines what kind of matter you have.</p></div>
+
+  <div class="card reveal states-card">
+    <h3>🧊💧💨 States of Matter — live particle simulation</h3>
+    <div class="state-btns">
+      <button class="state-btn active" data-state="solid">Solid</button>
+      <button class="state-btn" data-state="liquid">Liquid</button>
+      <button class="state-btn" data-state="gas">Gas</button>
+    </div>
+    <canvas id="states-canvas" width="900" height="280"></canvas>
+    <div class="state-desc" id="state-desc">
+      <b>Solid:</b> particles locked in a fixed lattice, only vibrating in place → definite shape <em>and</em> volume.
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card reveal">
+      <h3>🌳 The Classification Tree</h3>
+      <div class="tree">
+        <div class="tree-node root">MATTER</div>
+        <div class="tree-row">
+          <div class="tree-branch">
+            <div class="tree-node pure">Pure Substance<small>uniform &amp; fixed composition</small></div>
+            <div class="tree-row">
+              <div class="tree-node leaf">Element<small>one kind of atom — Fe, O₂, U</small></div>
+              <div class="tree-node leaf">Compound<small>atoms chemically bonded — H₂O, NaCl</small></div>
+            </div>
+          </div>
+          <div class="tree-branch">
+            <div class="tree-node mix">Mixture<small>two+ substances, physically combined</small></div>
+            <div class="tree-row">
+              <div class="tree-node leaf">Homogeneous<small>uniform throughout — gasoline, brass, air</small></div>
+              <div class="tree-node leaf">Heterogeneous<small>visibly different parts — soil, soda w/ bubbles</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <h3>🔥 Physical vs. Chemical Change</h3>
+      <div class="vs">
+        <div class="vs-side phys"><h4>Physical</h4><p>Same substance, different form.<br>Melting, boiling, dissolving, cutting.</p></div>
+        <div class="vs-mid">vs</div>
+        <div class="vs-side chem"><h4>Chemical</h4><p><b>New substance forms.</b><br>Burning, rusting, digesting, reacting.</p></div>
+      </div>
+      <h4 class="mini-head">4 signs a chemical change happened:</h4>
+      <div class="sign-row">
+        <span class="sign">🎨 color change</span><span class="sign">🫧 gas / bubbles</span>
+        <span class="sign">⬇️ precipitate forms</span><span class="sign">🌡️ heat / light released or absorbed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 3 — ATOMS ============ -->
+<section class="chapter" id="ch3">
+  <div class="ch-head reveal"><span class="ch-num">03</span><h2>Atoms, Isotopes &amp; Ions</h2>
+  <p>Three particles build everything: <b>protons</b> (+, define the element), <b>neutrons</b> (neutral, add mass), and <b>electrons</b> (−, do all the chemistry).</p></div>
+
+  <div class="grid2">
+    <div class="card reveal">
+      <h3>🏷️ Isotopic Notation — read the label</h3>
+      <div class="iso-graphic">
+        <span class="iso-mass">A<small>mass # = p⁺ + n⁰</small></span>
+        <span class="iso-z">Z<small>atomic # = p⁺</small></span>
+        <span class="iso-sym">X</span>
+        <span class="iso-charge">±c<small>charge = p⁺ − e⁻</small></span>
+      </div>
+      <div class="example-box">
+        <div><span class="iso-inline"><sup>37</sup><sub>17</sub>Cl</span> → 17 protons, 37 − 17 = <b>20 neutrons</b>, 17 electrons</div>
+        <div><span class="iso-inline"><sup>118</sup>Sn<sup>2+</sup></span> → 50 p⁺, 68 n⁰, 50 − 2 = <b>48 e⁻</b></div>
+      </div>
+      <div class="callout"><b>Isotopes</b> = same protons, different neutrons.<br><b>Ions</b> = same protons, different electrons. Lose e⁻ → cation (+). Gain e⁻ → anion (−).</div>
+    </div>
+    <div class="card reveal">
+      <h3>⚖️ Average Atomic Mass</h3>
+      <p>The periodic table mass is a <b>weighted average</b> of natural isotopes:</p>
+      <div class="formula-hero small">avg mass = Σ (fraction × isotope mass)</div>
+      <div class="worked">
+        <b>Copper:</b> 69.2% at 62.93 amu + 30.8% at 64.93 amu<br>
+        (0.692)(62.93) + (0.308)(64.93) = 43.55 + 20.00 = <b>63.55 amu</b> ✓ matches the table!
+      </div>
+      <div class="callout">The average always lands <em>closest to the most abundant isotope</em>. Use that to sanity-check.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 4 — PERIODIC TABLE ============ -->
+<section class="chapter wide" id="ch4">
+  <div class="ch-head reveal"><span class="ch-num">04</span><h2>The Periodic Table</h2>
+  <p>These are exactly the elements your homework requires: <b>1–56 plus Pt, Au, Hg, Pb, Rn, Fr, Ra, U, Pu</b>.
+  Hover any tile; click for the full profile.</p></div>
+
+  <div class="pt-wrap reveal">
+    <div id="periodic-table"></div>
+    <aside id="pt-detail" class="pt-detail"><div class="pt-detail-empty">☝️ click an element</div></aside>
+  </div>
+
+  <div class="legend reveal" id="pt-legend"></div>
+
+  <div class="grid3">
+    <div class="card mini reveal"><h4>Group 1 — Alkali Metals</h4><p>Explosively reactive, always form <b>+1</b> ions.</p></div>
+    <div class="card mini reveal"><h4>Group 2 — Alkaline Earth</h4><p>Reactive metals, always form <b>+2</b> ions.</p></div>
+    <div class="card mini reveal"><h4>Groups 3–12 — Transition Metals</h4><p>Colorful, multiple charges — that’s why we use Roman numerals.</p></div>
+    <div class="card mini reveal"><h4>Group 17 — Halogens</h4><p>Aggressive nonmetals, form <b>−1</b> ions.</p></div>
+    <div class="card mini reveal"><h4>Group 18 — Noble Gases</h4><p>Full outer shells → chemically content, form no ions.</p></div>
+    <div class="card mini reveal"><h4>Same group = same chemistry</h4><p>Columns share valence electrons, so they react alike (C, Si, Ge… Mg, Ca…).</p></div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 5 — LIGHT & ELECTRONS ============ -->
+<section class="chapter" id="ch5">
+  <div class="ch-head reveal"><span class="ch-num">05</span><h2>Light &amp; Electron Configuration</h2>
+  <p>Electrons live in energy levels. When they jump down, they emit light — and two equations connect everything.</p></div>
+
+  <div class="card reveal wave-card">
+    <h3>🌊 Waves: the two master equations</h3>
+    <svg id="wave-svg" viewBox="0 0 800 120" preserveAspectRatio="none"><path id="wave-path" fill="none"/></svg>
+    <div class="eq-row">
+      <div class="eq-pill">c = λν <small>speed = wavelength × frequency<br>c = 3.00 × 10⁸ m/s</small></div>
+      <div class="eq-pill">E = hν <small>energy = Planck × frequency<br>h = 6.626 × 10⁻³⁴ J·s</small></div>
+      <div class="eq-pill">E = hc/λ <small>combine them:<br>short wavelength ⇒ high energy</small></div>
+    </div>
+    <div class="spectrum-bar">
+      <span>radio</span><span>micro</span><span>IR</span><span class="vis">visible</span><span>UV</span><span>X-ray</span><span>γ</span>
+    </div>
+    <p class="muted center">← longer λ, lower E&nbsp;&nbsp;|&nbsp;&nbsp;shorter λ, higher E →</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card reveal">
+      <h3>🪜 Electron Configuration — the filling order</h3>
+      <p>Fill lowest energy first (Aufbau): <code>1s 2s 2p 3s 3p <b>4s 3d</b> 4p 5s 4d 5p 6s…</code></p>
+      <div class="worked">
+        <b>Fe (26 e⁻):</b> 1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁶<br>
+        <b>Na⁺ (10 e⁻):</b> 1s² 2s² 2p⁶ — lost one, now looks like Ne<br>
+        <b>O²⁻ (10 e⁻):</b> 1s² 2s² 2p⁶ — gained two, also looks like Ne
+      </div>
+      <div class="callout">Ions chase a <b>noble-gas configuration</b>. That’s the whole reason charges are predictable.</div>
+    </div>
+    <div class="card reveal">
+      <h3>🗜️ Noble Gas Shortcut</h3>
+      <p>Replace the inner core with the previous noble gas in brackets:</p>
+      <div class="example-box">
+        <div><b>Cs:</b> [Xe] 6s¹</div>
+        <div><b>Ga:</b> [Ar] 4s² 3d¹⁰ 4p¹</div>
+        <div><b>Xe:</b> [Kr] 5s² 4d¹⁰ 5p⁶</div>
+      </div>
+      <p class="muted">Tip: the periodic table tiles above show each element’s configuration when you click — practice by predicting first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 6 — TRENDS ============ -->
+<section class="chapter" id="ch6">
+  <div class="ch-head reveal"><span class="ch-num">06</span><h2>Periodicity — the three trends</h2>
+  <p>One idea explains all three trends: <b>effective nuclear pull vs. distance.</b> More protons pull harder; more shells put valence electrons farther away.</p></div>
+
+  <div class="card reveal trend-map">
+    <div class="trend-grid">
+      <div class="trend-arrow right">→ across a period: <b>radius shrinks</b>, IE &amp; EN <b>rise</b> (more protons, same shell)</div>
+      <div class="trend-arrow down">↓ down a group: <b>radius grows</b>, IE &amp; EN <b>fall</b> (more shells, more shielding)</div>
+      <div class="trend-corner">F = most electronegative ✨</div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="card reveal trend-card"><h4>📏 Atomic Radius</h4>
+      <p>Distance from nucleus to outer electrons.</p>
+      <p class="trend-line">K &gt; Na &gt; Li (more shells)<br>Li &gt; Be &gt; … &gt; F (more pull, same shell)</p></div>
+    <div class="card reveal trend-card"><h4>⚡ Ionization Energy</h4>
+      <p>Energy needed to <em>remove</em> an electron.</p>
+      <p class="trend-line">Small atom = held tight = high IE.<br>Cl &gt; S &gt; P;&nbsp; Ca lowest of Be/Mg/Ca</p></div>
+    <div class="card reveal trend-card"><h4>🧲 Electronegativity</h4>
+      <p>How strongly an atom pulls <em>shared</em> electrons in a bond.</p>
+      <p class="trend-line">F is the champion.<br>K weakest of Li/Na/K.</p></div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 7 — IONS & FLASHCARDS ============ -->
+<section class="chapter" id="ch7">
+  <div class="ch-head reveal"><span class="ch-num">07</span><h2>Ions, Polyatomics &amp; Flashcards</h2>
+  <p>Your homework says to memorize these. So here are <b>built-in flashcards</b> for all three lists — plus a quiz to prove you know them.</p></div>
+
+  <div class="card reveal flash-zone">
+    <div class="deck-tabs">
+      <button class="deck-tab active" data-deck="elements">⚛️ Elements</button>
+      <button class="deck-tab" data-deck="poly">🧩 Polyatomic Ions</button>
+      <button class="deck-tab" data-deck="cations">➕ Metal Cations</button>
+    </div>
+    <div class="flashcard-stage">
+      <div class="flashcard" id="flashcard">
+        <div class="fc-face fc-front" id="fc-front">Sym</div>
+        <div class="fc-face fc-back" id="fc-back">Name</div>
+      </div>
+    </div>
+    <div class="fc-controls">
+      <button id="fc-prev" class="btn btn-ghost">← prev</button>
+      <span id="fc-count" class="fc-count">1 / 65</span>
+      <button id="fc-next" class="btn btn-ghost">next →</button>
+      <button id="fc-shuffle" class="btn btn-ghost">🔀 shuffle</button>
+    </div>
+    <p class="muted center">click the card to flip ✨</p>
+  </div>
+
+  <div class="card reveal quiz-zone">
+    <h3>🏁 Symbol Sprint — 10 question quiz</h3>
+    <div id="quiz-area"><button id="quiz-start" class="btn btn-primary">Start quiz</button></div>
+  </div>
+
+  <details class="ref-tables reveal"><summary>📚 Open the full reference tables (polyatomics + cations)</summary>
+    <div class="grid2">
+      <div class="card"><h4>Polyatomic Ions</h4><div id="poly-table" class="ion-table"></div></div>
+      <div class="card"><h4>Metal Cations (multiple charges)</h4><div id="cation-table" class="ion-table"></div></div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ CHAPTER 8 — NAMING ============ -->
+<section class="chapter" id="ch8">
+  <div class="ch-head reveal"><span class="ch-num">08</span><h2>Naming &amp; Writing Formulas</h2>
+  <p>Three families of compounds, three sets of rules. First, decide which family you’re in:</p></div>
+
+  <div class="card reveal flow">
+    <div class="flow-node q">Does it start with H (and act as an acid in water)?</div>
+    <div class="flow-split">
+      <div class="flow-branch"><div class="flow-yes">YES → ACID</div>
+        <div class="flow-node a">no oxygen → <b>hydro-___-ic acid</b> (HCl = hydrochloric)<br>
+        “-ate” ion → <b>-ic acid</b> (H₂SO₄ = sulfuric)<br>
+        “-ite” ion → <b>-ous acid</b> (H₂SO₃ = sulfurous)</div></div>
+      <div class="flow-branch"><div class="flow-no">NO → metal first?</div>
+        <div class="flow-split">
+          <div class="flow-branch"><div class="flow-yes">metal + nonmetal → IONIC</div>
+            <div class="flow-node a">name metal, then ion.<br>Transition metal? add Roman numeral: FeBr₃ = iron(III) bromide.<br><b>No prefixes. Balance charges to zero.</b></div></div>
+          <div class="flow-branch"><div class="flow-no">two nonmetals → COVALENT</div>
+            <div class="flow-node a">use prefixes: mono, di, tri, tetra, penta, hexa…<br>N₂O₄ = dinitrogen tetroxide.<br>(skip “mono” on the first element)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card reveal">
+      <h3>🧮 Writing ionic formulas: the criss-cross</h3>
+      <div class="crisscross">
+        <span class="cc-ion">Ca<sup>2+</sup></span>
+        <span class="cc-ion">PO₄<sup>3−</sup></span>
+        <svg class="cc-arrows" viewBox="0 0 120 60"><path d="M20 10 L100 50" /><path d="M100 10 L20 50"/></svg>
+        <span class="cc-result">→ Ca₃(PO₄)₂</span>
+      </div>
+      <p class="muted">Charges swap and become subscripts. Polyatomics with a subscript get parentheses.</p>
+    </div>
+    <div class="card reveal">
+      <h3>📝 Pattern cheat sheet</h3>
+      <ul class="rule-list">
+        <li><b>per___ate</b> → one more O than -ate (ClO₄⁻ perchlorate)</li>
+        <li><b>___ate</b> → the base form (ClO₃⁻ chlorate)</li>
+        <li><b>___ite</b> → one less O (ClO₂⁻ chlorite)</li>
+        <li><b>hypo___ite</b> → two less O (ClO⁻ hypochlorite)</li>
+        <li><b>-ide</b> → usually a single element anion (chloride, oxide, nitride)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 9 — REACTIONS ============ -->
+<section class="chapter" id="ch9">
+  <div class="ch-head reveal"><span class="ch-num">09</span><h2>Equations &amp; Reaction Types</h2>
+  <p>Balance with coefficients (never change subscripts!), then classify the pattern.</p></div>
+
+  <div class="grid3 rxn-grid">
+    <div class="card mini reveal rxn"><h4>Synthesis</h4><div class="rxn-eq">A + B → AB</div><p>2H₂ + O₂ → 2H₂O</p></div>
+    <div class="card mini reveal rxn"><h4>Decomposition</h4><div class="rxn-eq">AB → A + B</div><p>2KNO₃ → 2KNO₂ + O₂</p></div>
+    <div class="card mini reveal rxn"><h4>Single Replacement</h4><div class="rxn-eq">A + BC → AC + B</div><p>Zn + 2HCl → ZnCl₂ + H₂</p></div>
+    <div class="card mini reveal rxn"><h4>Double Replacement</h4><div class="rxn-eq">AB + CD → AD + CB</div><p>AgNO₃ + NaCl → AgCl↓ + NaNO₃</p></div>
+    <div class="card mini reveal rxn"><h4>Combustion</h4><div class="rxn-eq">CₓHᵧ + O₂ → CO₂ + H₂O</div><p>CH₄ + 2O₂ → CO₂ + 2H₂O</p></div>
+    <div class="card mini reveal rxn"><h4>Acid–Base</h4><div class="rxn-eq">HA + BOH → BA + H₂O</div><p>HCl + NaOH → NaCl + H₂O</p></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card reveal">
+      <h3>💧 Net Ionic Equations in 3 steps</h3>
+      <ol class="steps">
+        <li><b>Molecular:</b> Pb(NO₃)₂(aq) + 2KI(aq) → PbI₂(s) + 2KNO₃(aq)</li>
+        <li><b>Complete ionic:</b> split everything <em>(aq)</em> into ions; solids/liquids/gases stay whole:<br>
+        Pb²⁺ + 2NO₃⁻ + 2K⁺ + 2I⁻ → PbI₂(s) + 2K⁺ + 2NO₃⁻</li>
+        <li><b>Cancel spectators</b> (K⁺, NO₃⁻ appear unchanged on both sides):<br>
+        <span class="net">Pb²⁺(aq) + 2I⁻(aq) → PbI₂(s)</span></li>
+      </ol>
+    </div>
+    <div class="card reveal">
+      <h3>🪜 Activity Series — who can kick out whom</h3>
+      <div class="activity-ladder">
+        <span class="al hot">K</span><span class="al hot">Ca</span><span class="al hot">Na</span>
+        <span class="al warm">Mg</span><span class="al warm">Al</span><span class="al warm">Zn</span>
+        <span class="al warm">Cr</span><span class="al warm">Fe</span><span class="al warm">Ni</span>
+        <span class="al warm">Sn</span><span class="al warm">Pb</span>
+        <span class="al h2">H</span>
+        <span class="al cold">Cu</span><span class="al cold">Ag</span><span class="al cold">Au</span>
+      </div>
+      <p class="muted">A metal replaces anything <b>below</b> it. Above H = reacts with acid. Cu + Fe(NO₃)₂? Cu is below Fe → <b>NR</b>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 10 — MOLES ============ -->
+<section class="chapter" id="ch10">
+  <div class="ch-head reveal"><span class="ch-num">10</span><h2>The Mole — chemistry’s counting unit</h2>
+  <p>1 mole = <b>6.022 × 10²³</b> particles = the molar mass in grams. Every mass↔particle problem walks the same map:</p></div>
+
+  <div class="card reveal mole-map">
+    <div class="mm-node">grams</div><div class="mm-link">÷ molar mass →<br>← × molar mass</div>
+    <div class="mm-node hub">MOLES</div><div class="mm-link">× 6.022×10²³ →<br>← ÷ 6.022×10²³</div>
+    <div class="mm-node">particles</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card widget reveal">
+      <h3>⚗️ Molar Mass Calculator</h3>
+      <p class="muted">Type a formula — parentheses OK: <code>Ca3(PO4)2</code>, <code>C14H18N2O5</code></p>
+      <input id="mm-input" type="text" placeholder="e.g. C9H8O4" autocomplete="off">
+      <div class="widget-out" id="mm-out">—</div>
+    </div>
+    <div class="card reveal">
+      <h3>⚖️ Limiting Reactant — the recipe rule</h3>
+      <ol class="steps">
+        <li>Convert <b>both</b> reactant masses to moles.</li>
+        <li>Divide each by its coefficient — the <b>smaller result is limiting</b>.</li>
+        <li>Use the limiting reactant’s moles (and mole ratios) to find the product.</li>
+      </ol>
+      <div class="callout">% yield = <span class="frac"><span>actual</span><span>theoretical</span></span> × 100 — you can collect at most what the limiting reactant allows.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 11 — MOLARITY ============ -->
+<section class="chapter" id="ch11">
+  <div class="ch-head reveal"><span class="ch-num">11</span><h2>Molarity — concentration</h2></div>
+  <div class="grid2">
+    <div class="card reveal">
+      <div class="formula-hero">M = <span class="frac"><span>moles of solute</span><span>liters of solution</span></span></div>
+      <p>Rearrange for whatever you need: <code>mol = M × V</code>, <code>V = mol / M</code>. <b>Always convert mL → L.</b></p>
+      <div class="worked"><b>Titration logic:</b> at the equivalence point, moles of acid = moles of base (×1 for 1:1 reactions).<br>
+      M<sub>a</sub>V<sub>a</sub> = M<sub>b</sub>V<sub>b</sub></div>
+    </div>
+    <div class="card widget reveal">
+      <h3>🧪 Molarity Solver</h3>
+      <p class="muted">Fill any two — I’ll solve the third.</p>
+      <div class="widget-col">
+        <input id="mo-m" type="number" step="any" placeholder="Molarity (M)">
+        <input id="mo-n" type="number" step="any" placeholder="moles (mol)">
+        <input id="mo-v" type="number" step="any" placeholder="Volume (L)">
+      </div>
+      <div class="widget-out" id="mo-out">—</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 12 — ACIDS & BASES ============ -->
+<section class="chapter" id="ch12">
+  <div class="ch-head reveal"><span class="ch-num">12</span><h2>Acids &amp; Bases</h2>
+  <p><b>Brønsted–Lowry:</b> an acid <em>donates</em> a proton (H⁺); a base <em>accepts</em> one. That’s it. Follow the H⁺.</p></div>
+
+  <div class="card reveal">
+    <h3>🌈 The pH scale</h3>
+    <div class="ph-bar">
+      <span class="ph-mark" style="left:7%">stomach acid</span>
+      <span class="ph-mark" style="left:35%">soda</span>
+      <span class="ph-mark" style="left:50%">pure water (7)</span>
+      <span class="ph-mark" style="left:64%">baking soda</span>
+      <span class="ph-mark" style="left:92%">drain cleaner</span>
+    </div>
+    <div class="ph-labels"><span>0 — acid (sour, ↑H⁺)</span><span>7 — neutral</span><span>14 — base (bitter, ↑OH⁻)</span></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card reveal">
+      <h3>👯 Conjugate Pairs — track the proton</h3>
+      <div class="conj">
+        <div class="conj-row">
+          <span class="tagA">acid</span> HNO₂ &nbsp;+&nbsp; <span class="tagB">base</span> H₂O
+          &nbsp;⇌&nbsp; <span class="tagA2">conj. acid</span> H₃O⁺ &nbsp;+&nbsp; <span class="tagB2">conj. base</span> NO₂⁻
+        </div>
+      </div>
+      <ul class="rule-list">
+        <li>The acid <b>loses H⁺</b> → becomes the conjugate base.</li>
+        <li>The base <b>gains H⁺</b> → becomes the conjugate acid.</li>
+        <li>Pairs differ by exactly one H⁺: HNO₂/NO₂⁻ and H₂O/H₃O⁺.</li>
+      </ul>
+    </div>
+    <div class="card reveal">
+      <h3>✍️ Completing acid–base reactions</h3>
+      <p>Move one H⁺ from the acid to the base, write both products:</p>
+      <div class="example-box">
+        <div>HF + CH₃COO⁻ → F⁻ + CH₃COOH</div>
+        <div>H₂S + CO₃²⁻ → HS⁻ + HCO₃⁻</div>
+        <div>NH₄⁺ + F⁻ → NH₃ + HF</div>
+      </div>
+      <div class="callout">Amphoteric species (like H₂O or HSO₄⁻) can play either role depending on the partner.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOMEWORK ============ -->
+<section class="chapter wide" id="homework">
+  <div class="ch-head reveal"><span class="ch-num">✦</span><h2>The Homework — every problem, worked</h2>
+  <p>Try each one yourself first (that’s the whole point), then tap <b>Show solution</b> to check. Answers follow sig-fig rules.</p>
+  <div class="hw-toolbar"><button class="btn btn-ghost" id="hw-expand">Expand all</button><button class="btn btn-ghost" id="hw-collapse">Collapse all</button></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Percent Error, Sig Figs, Scientific Notation</h3>
+
+    <div class="problem"><div class="p-q"><b>1a.</b> Density of aluminum measured 2.64 g/cm³ (accepted 2.70 g/cm³). Percent error?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">|2.64 − 2.70| / 2.70 × 100 = 0.06/2.70 × 100 = <b>2.2 %</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>1b.</b> Iron in ore measured 16.48 % (accepted 16.12 %).</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">|16.48 − 16.12| / 16.12 × 100 = 0.36/16.12 × 100 = <b>2.23 %</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>2.</b> Sig figs in each:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><table class="sol-table"><tr><td>a. 12 → <b>2</b></td><td>d. 2.001×10³ → <b>4</b></td><td>g. 1000. → <b>4</b></td></tr>
+      <tr><td>b. 1098 → <b>4</b></td><td>e. 100 → <b>1</b></td><td>h. 22.04030 → <b>7</b></td></tr>
+      <tr><td>c. 2001 → <b>4</b></td><td>f. 0.0000101 → <b>3</b></td><td>i. 1.00×10³ → <b>3</b></td></tr></table>
+      Leading zeros never count; trailing zeros count only with a decimal point.</div></div>
+
+    <div class="problem"><div class="p-q"><b>3.</b> Round to 2 sig figs, scientific notation:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. 0.00031254 → <b>3.1 × 10⁻⁴</b> &nbsp;&nbsp; b. 31,254,000 → <b>3.1 × 10⁷</b><br>
+      c. 35,900 → <b>3.6 × 10⁴</b> &nbsp;&nbsp; d. 0.00000399 → <b>4.0 × 10⁻⁶</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>4.</b> Express 480 to 1, 2, 3 sig figs:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. <b>5 × 10²</b> &nbsp;&nbsp; b. <b>4.8 × 10²</b> &nbsp;&nbsp; c. <b>4.80 × 10²</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>5.</b> Compute with correct sig figs:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. 97.381 + 4.2502 + 0.99195 = 102.62315 → least decimal places is 3 (97.381) → <b>102.623</b><br>
+      b. 0.102 × 0.0821 × 273.5 = 2.2903… → least sig figs is 3 → <b>2.29</b><br>
+      c. 171.5 + 72.915 − 8.23 = 236.185 → least decimal places is 1 (171.5) → <b>236.2</b><br>
+      d. (9.04 − 8.23 + 21.954 + 81.0) = 103.8 (1 decimal place); 103.8 / 3.1416 = <b>33.03</b> (4 sig figs)</div></div>
+
+    <div class="problem"><div class="p-q"><b>6.</b> Celsius → Kelvin (K = °C + 273):</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. 78.1 + 273 = <b>351 K</b> &nbsp; b. −25 + 273 = <b>248 K</b> &nbsp; c. −273 + 273 = <b>0 K</b> (absolute zero!) &nbsp; d. 801 + 273 = <b>1074 K</b></div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Dimensional Analysis</h3>
+
+    <div class="problem"><div class="p-q"><b>7a.</b> A 5-carat diamond — how many pennyweights?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">5 carat × (0.200 g / 1 carat) × (1 grain / 0.0648 g) × (1 pwt / 24 grain) = 1.00 g → 15.43 grain → <b>0.643 pwt</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>7b.</b> Mass of 2.3 troy oz of gold in grams?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">2.3 troy oz × (20 pwt / 1 oz) × (24 grain / 1 pwt) × (0.0648 g / 1 grain) = 46 × 24 × 0.0648 = <b>72 g</b> (2 sf; unrounded 71.5 g)</div></div>
+
+    <div class="problem"><div class="p-q"><b>7c.</b> Volume of 1 troy pound of gold (ρ = 19.3 g/cm³)?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">1 troy lb = 12 oz × 20 pwt × 24 grain = 5760 grain × 0.0648 g = 373.2 g.<br>V = m/ρ = 373.2 / 19.3 = <b>19.3 cm³</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>8a.</b> An aspirin tablet has 5.00 × 10² mg of active ingredient. How many grains?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">500. mg = 0.500 g × (1 grain / 0.0648 g) = <b>7.72 grains</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>8b.</b> …and how many scruples?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">7.72 grain × (1 scruple / 20 grain) = <b>0.386 scruple</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>8c.</b> Mass of 1.00 scruple in grams?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">1.00 scruple = 20 grain × 0.0648 g/grain = <b>1.30 g</b> (check: 1 dram = 3 scruples = 3.888 g → 1.296 g ✓)</div></div>
+
+    <div class="problem"><div class="p-q"><b>9.</b> 100 m in 9.79 s — how long to run a mile?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">Speed = 100 m / 9.79 s. A mile is 5280 ft (the sheet’s “5,820” is a typo) = 5280 × 12 in × 2.54 cm = 1609 m.<br>
+      t = 1609 m × (9.79 s / 100 m) = <b>158 s ≈ 2.6 min</b> &nbsp; <span class="muted">(if you use the printed 5,820 ft = 1774 m → 174 s)</span></div></div>
+
+    <div class="problem"><div class="p-q"><b>10.</b> 32 mi/gal vs 14 km/L — which is better? (1 gal = 4 qt, 1.057 qt = 1 L)</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">Convert 14 km/L: 14 km × (1 mi / 1.609 km) = 8.70 mi/L; 1 gal = 4 qt × (1 L / 1.057 qt) = 3.784 L.<br>
+      8.70 mi/L × 3.784 L/gal = <b>32.9 mi/gal → your spouse’s car wins (barely)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>11a.</b> “New York — 112 km” at 65 mi/hr: how long?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">112 km × (1 mi / 1.609 km) = 69.6 mi; t = 69.6 / 65 = <b>1.1 hr (about 64 min)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>11b.</b> At 28 mi/gal, how many liters for 112 km?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">69.6 mi ÷ 28 mi/gal = 2.49 gal × 4 qt × (1 L / 1.057 qt) = <b>9.4 L</b></div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Classifying Matter</h3>
+
+    <div class="problem"><div class="p-q"><b>12.</b> Differences between solid, liquid, gas (+ particle diagrams)?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>Solid:</b> particles tightly packed in a fixed lattice, only vibrate → definite shape &amp; volume.<br>
+      <b>Liquid:</b> particles close but slide past each other → definite volume, takes container’s shape.<br>
+      <b>Gas:</b> particles far apart, moving fast and independently → fills any container (no fixed shape or volume).<br>
+      <span class="muted">Use the live simulation in Chapter 2 as your particle diagram reference!</span></div></div>
+
+    <div class="problem"><div class="p-q"><b>13.</b> Homogeneous vs heterogeneous?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>Homogeneous:</b> uniform composition throughout — every sample is identical (a solution).<br>
+      <b>Heterogeneous:</b> visibly distinct regions/phases with different compositions.</div></div>
+
+    <div class="problem"><div class="p-q"><b>14.</b> Classify each:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. soil — <b>heterogeneous</b> &nbsp; b. atmosphere — <b>homogeneous</b> (clean air is a uniform solution of gases) &nbsp;
+      c. carbonated soda — <b>heterogeneous</b> (gas bubbles = second phase) &nbsp; d. gasoline — <b>homogeneous</b> &nbsp;
+      e. gold — <b>homogeneous</b> (pure substance) &nbsp; f. ethanol + water — <b>homogeneous</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>15.</b> Mixture or pure substance (element / compound)?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. water — <b>pure substance, compound</b> &nbsp; b. blood — <b>mixture</b> &nbsp; c. oceans — <b>mixture</b><br>
+      d. iron — <b>pure substance, element</b> &nbsp; e. brass — <b>mixture</b> (Cu + Zn alloy) &nbsp; f. uranium — <b>pure substance, element</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>16.</b> Physical vs chemical changes?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>Physical:</b> the substance changes form/state but stays the same substance (melting, dissolving).<br>
+      <b>Chemical:</b> bonds break and form — a <b>new substance</b> with new properties is produced (burning, rusting).</div></div>
+
+    <div class="problem"><div class="p-q"><b>19.</b> Four signs a chemical reaction occurred:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">① color change &nbsp;② gas produced (bubbles/odor) &nbsp;③ precipitate (solid) forms &nbsp;④ energy change — heat or light released/absorbed</div></div>
+
+    <div class="problem"><div class="p-q"><b>20.</b> Glass rod over a burning candle turns black. For the wax, wick, and rod — physical, chemical, both, neither?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>Wax — both:</b> it melts (physical) and combusts into CO₂ + H₂O (chemical).<br>
+      <b>Wick — chemical:</b> it burns, forming new substances (char, CO₂).<br>
+      <b>Glass rod — neither:</b> the black is soot (carbon from incomplete combustion) <em>deposited on</em> the glass; the glass itself is unchanged.</div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Periodic Table, Isotopes &amp; Light</h3>
+
+    <div class="problem"><div class="p-q"><b>21.</b> Write the isotopic symbols:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. Z=8, n=9 → <b>¹⁷₈O</b> &nbsp; b. Cl, mass 37 → <b>³⁷₁₇Cl</b> &nbsp; c. Z=27, mass 60 → <b>⁶⁰₂₇Co</b><br>
+      d. 26 p, 31 n → <b>⁵⁷₂₆Fe</b> &nbsp; e. I, mass 131 → <b>¹³¹₅₃I</b> &nbsp; f. Z=3, n=4 → <b>⁷₃Li</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>22.</b> Copper: 69.2% at 62.93 amu, 30.8% at 64.93 amu. Average atomic mass?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">(0.692)(62.93) + (0.308)(64.93) = 43.55 + 20.00 = <b>63.55 amu</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>23.</b> 1.40% @ 203.973, 24.10% @ 205.9745, 22.10% @ 206.9759, 52.40% @ 207.9766. Average mass and identity?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">2.856 + 49.640 + 45.742 + 108.980 = <b>207.2 amu → lead (Pb)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>24.</b> Group names:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. Group 1 — <b>alkali metals</b> &nbsp; b. Groups 3–12 — <b>transition metals</b> &nbsp; c. Group 18 — <b>noble gases</b><br>
+      d. Group 2 — <b>alkaline earth metals</b> &nbsp; e. Group 17 — <b>halogens</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>25.</b> Ion with 50 p, 68 n, 48 e — symbol and charge?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">50 protons = tin. Mass = 50 + 68 = 118. Charge = 50 − 48 = +2 → <b>¹¹⁸₅₀Sn²⁺</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>26.</b> Which sets are all in the same group?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>b. C, Si, Ge</b> (Group 14) and <b>d. Mg, Ca</b> (Group 2). (N,P,O mixes groups 15/16; Rb and Sn are unrelated.)</div></div>
+
+    <div class="problem"><div class="p-q"><b>27.</b> Identify each element:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. oxygen family, ion with 54 e⁻: X²⁻ → Z = 52 → <b>tellurium (Te)</b><br>
+      b. alkali metal, ion with 36 e⁻: X⁺ → Z = 37 → <b>rubidium (Rb)</b><br>
+      c. noble gas, 18 protons → <b>argon (Ar)</b> &nbsp; d. halogen, 85 p / 85 e → <b>astatine (At)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>28.</b> Gain or lose electrons? Most likely ion?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. Na lose → <b>Na⁺</b> &nbsp; b. Sr lose → <b>Sr²⁺</b> &nbsp; c. P gain → <b>P³⁻</b> &nbsp; d. Ba lose → <b>Ba²⁺</b> &nbsp; e. I gain → <b>I⁻</b><br>
+      f. O gain → <b>O²⁻</b> &nbsp; g./i. Al lose → <b>Al³⁺</b> &nbsp; h./j. S gain → <b>S²⁻</b><br>
+      <span class="muted">Metals lose to the previous noble gas; nonmetals gain to the next one.</span></div></div>
+
+    <div class="problem"><div class="p-q"><b>29.</b> Protons/electrons in each ion + simplest compound with oxide (for cations) or aluminum (for anions):</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><table class="sol-table">
+      <tr><td>a. Fe²⁺: 26 p, 24 e → <b>FeO</b></td><td>f. P³⁻: 15 p, 18 e → <b>AlP</b></td></tr>
+      <tr><td>b. Fe³⁺: 26 p, 23 e → <b>Fe₂O₃</b></td><td>g./i. Br⁻: 35 p, 36 e → <b>AlBr₃</b></td></tr>
+      <tr><td>c. Ba²⁺: 56 p, 54 e → <b>BaO</b></td><td>h./j. N³⁻: 7 p, 10 e → <b>AlN</b></td></tr>
+      <tr><td>d. Cs⁺: 55 p, 54 e → <b>Cs₂O</b></td><td>e. S²⁻: 16 p, 18 e → <b>Al₂S₃</b></td></tr></table></div></div>
+
+    <div class="problem"><div class="p-q"><b>30.</b> X forms XBr₂; ion has mass number 230 and 86 electrons. Identity and neutrons?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">XBr₂ → the ion is X²⁺ → protons = 86 + 2 = 88 → <b>radium (Ra)</b>. Neutrons = 230 − 88 = <b>142</b>.</div></div>
+
+    <div class="problem"><div class="p-q"><b>31.</b> Wavelength and energy of a wave with ν = 3.76 × 10¹⁴ s⁻¹?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">λ = c/ν = (3.00 × 10⁸) / (3.76 × 10¹⁴) = <b>7.98 × 10⁻⁷ m (798 nm)</b><br>
+      E = hν = (6.626 × 10⁻³⁴)(3.76 × 10¹⁴) = <b>2.49 × 10⁻¹⁹ J</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>32.</b> Frequency of a 6.9 × 10⁻¹⁰ cm wave?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">6.9 × 10⁻¹⁰ cm = 6.9 × 10⁻¹² m. ν = c/λ = (3.00 × 10⁸)/(6.9 × 10⁻¹²) = <b>4.3 × 10¹⁹ s⁻¹</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>33.</b> Wavelength of a wave carrying 8.35 × 10⁻¹⁸ J?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">λ = hc/E = (6.626 × 10⁻³⁴)(3.00 × 10⁸) / (8.35 × 10⁻¹⁸) = <b>2.38 × 10⁻⁸ m (23.8 nm)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>34.</b> Energy of hydrogen’s blue-green emission line (486 nm)?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">E = hc/λ = (6.626 × 10⁻³⁴)(3.00 × 10⁸) / (486 × 10⁻⁹) = <b>4.09 × 10⁻¹⁹ J</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>35.</b> Full electron configurations:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. Fe (26 e⁻): <b>1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁶</b><br>
+      b. O²⁻ (10 e⁻): <b>1s² 2s² 2p⁶</b><br>
+      c. Na⁺ (10 e⁻): <b>1s² 2s² 2p⁶</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>36.</b> Noble gas core configurations:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. Cs: <b>[Xe] 6s¹</b> &nbsp; b. Ga: <b>[Ar] 4s² 3d¹⁰ 4p¹</b> &nbsp; c. Xe: <b>[Kr] 5s² 4d¹⁰ 5p⁶</b></div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Periodicity</h3>
+
+    <div class="problem"><div class="p-q"><b>37.</b> Atomic radius:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. <b>Definition:</b> the distance from the nucleus to the outermost electrons (half the distance between bonded identical nuclei).<br>
+      b. Attraction between opposite charges <b>weakens</b> as distance increases.<br>
+      c. More protons → <b>stronger</b> pull on valence electrons (same shell).<br>
+      d. <b>K</b> is largest — most energy levels/shells of Li, Na, K.<br>
+      e. <b>As</b> is smallest — same period as Ca and Cu, but the most protons pulling the same shells in tighter.<br>
+      f. <b>Agree.</b> F and O share a period but F has more protons (smaller); Cl has an extra shell (bigger). So F is smallest.</div></div>
+
+    <div class="problem"><div class="p-q"><b>38.</b> Ionization energy:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. <b>Definition:</b> the energy required to remove an electron from a gaseous atom.<br>
+      b. <b>Ca</b> smallest — largest atom of the three, so its valence electron is farthest and most shielded → easiest to remove.<br>
+      c. <b>Cl</b> largest — same period, most protons, smallest radius → holds electrons tightest.<br>
+      d. <b>Disagree.</b> P has the extra shell, so P has the <em>smallest</em> IE; N actually has the largest of C, N, P.</div></div>
+
+    <div class="problem"><div class="p-q"><b>39.</b> Electronegativity:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. <b>Definition:</b> an atom’s ability to attract shared electrons in a chemical bond.<br>
+      b. <b>F</b> — the most electronegative element of all (top-right corner).<br>
+      c. <b>K</b> — biggest atom of Li/Na/K, weakest hold on bonding electrons.<br>
+      d. <b>F</b> — beats O (fewer protons) and Cl (extra shell).</div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Naming Compounds (40–42)</h3>
+
+    <div class="problem"><div class="p-q"><b>40.</b> Name the ionic compounds:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><table class="sol-table">
+      <tr><td>a. NaCl — sodium chloride</td><td>h. AlI₃ — aluminum iodide</td><td>o. BaSO₃ — barium sulfite</td></tr>
+      <tr><td>b. Rb₂O — rubidium oxide</td><td>i. Al₂O₃ — aluminum oxide</td><td>p. KMnO₄ — potassium permanganate</td></tr>
+      <tr><td>c. FeBr₃ — iron(III) bromide</td><td>j. ZnCl₂ — zinc chloride</td><td>q. Sr₃P₂ — strontium phosphide</td></tr>
+      <tr><td>d. Cr₂O₃ — chromium(III) oxide</td><td>k. Li₃N — lithium nitride</td><td>r. Ca₃(PO₄)₂ — calcium phosphate</td></tr>
+      <tr><td>e. CaBr₂ — calcium bromide</td><td>l. Ag₂S — silver sulfide</td><td>s. Pb(NO₃)₂ — lead(II) nitrate</td></tr>
+      <tr><td>f. CsF — cesium fluoride</td><td>m. KClO₄ — potassium perchlorate</td><td>t. NaNO₂ — sodium nitrite</td></tr>
+      <tr><td>g. CaS — calcium sulfide</td><td>n. Al₂(SO₄)₃ — aluminum sulfate</td><td>u. K₂Cr₂O₇ — potassium dichromate</td></tr></table></div></div>
+
+    <div class="problem"><div class="p-q"><b>41.</b> Name the molecules (covalent — use prefixes):</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><table class="sol-table">
+      <tr><td>a. NI₃ — nitrogen triiodide</td><td>i. SiO₂ — silicon dioxide</td></tr>
+      <tr><td>b. PCl₃ — phosphorus trichloride</td><td>j. XeF₆ — xenon hexafluoride</td></tr>
+      <tr><td>c. SO₂ — sulfur dioxide</td><td>k. CH₄ — methane</td></tr>
+      <tr><td>d. N₂O₄ — dinitrogen tetroxide</td><td>l. NH₃ — ammonia</td></tr>
+      <tr><td>e. ICl₃ — iodine trichloride</td><td>m. O₂ — oxygen</td></tr>
+      <tr><td>f. SF₂ — sulfur difluoride</td><td>n. N₂ — nitrogen</td></tr>
+      <tr><td>g. N₂F₄ — dinitrogen tetrafluoride</td><td>o. C₂H₂ — acetylene (ethyne)</td></tr>
+      <tr><td>h. P₂S₅ — diphosphorus pentasulfide</td><td>p. C₂H₄ — ethylene (ethene)</td></tr></table></div></div>
+
+    <div class="problem"><div class="p-q"><b>42.</b> Name the acids and bases:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><table class="sol-table">
+      <tr><td>a. HCl — hydrochloric acid</td><td>f. CaCO₃ — calcium carbonate</td></tr>
+      <tr><td>b. H₃PO₄ — phosphoric acid</td><td>g. Al(OH)₃ — aluminum hydroxide</td></tr>
+      <tr><td>c. H₂SO₃ — sulfurous acid</td><td>h. NaOH — sodium hydroxide</td></tr>
+      <tr><td>d. HC₂H₃O₂ — acetic acid</td><td>i. NaHCO₃ — sodium bicarbonate</td></tr>
+      <tr><td>e. H₂SO₄ — sulfuric acid</td><td>k. NH₃ — ammonia</td></tr></table>
+      <span class="muted">Pattern: no oxygen → hydro-…-ic; “-ate” ion → “-ic acid”; “-ite” ion → “-ous acid”.</span></div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Equations &amp; Reaction Types (44–56)</h3>
+
+    <div class="problem"><div class="p-q"><b>44.</b> Balance and classify:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. <b>2</b>CO + O₂ → <b>2</b>CO₂ — synthesis / combustion (redox)<br>
+      b. N₂O₅ + H₂O → <b>2</b>HNO₃ — synthesis<br>
+      c. PCl₅ + <b>4</b>H₂O → H₃PO₄ + <b>5</b>HCl — double replacement (hydrolysis)<br>
+      d. CH₄ + <b>4</b>Br₂ → CBr₄ + <b>4</b>HBr — substitution (redox)<br>
+      e. <b>2</b>C₅H₁₀O₂ + <b>13</b>O₂ → <b>10</b>CO₂ + <b>10</b>H₂O — combustion<br>
+      f. Cr(OH)₃ + <b>3</b>HClO₄ → Cr(ClO₄)₃ + <b>3</b>H₂O — acid–base (double replacement)<br>
+      g. <b>2</b>KNO₃ → <b>2</b>KNO₂ + O₂ — decomposition</div></div>
+
+    <div class="problem"><div class="p-q"><b>45.</b> Potassium chlorate decomposes when heated:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>2KClO₃(s) → 2KCl(s) + 3O₂(g)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>46.</b> Zinc + sulfuric acid:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>Zn(s) + H₂SO₄(aq) → H₂(g) + ZnSO₄(aq)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>47.</b> Phosphorus trichloride + water:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>PCl₃(l) + 3H₂O(l) → H₃PO₃(aq) + 3HCl(aq)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>48.</b> Hydrogen sulfide over hot iron(III) hydroxide:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>3H₂S(g) + 2Fe(OH)₃(s) → Fe₂S₃(s) + 6H₂O(g)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>49–56.</b> Classify, write, and balance:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">49. H₂ + I₂ → <b>2</b>HI — <b>synthesis</b> (also redox)<br>
+      50. <b>2</b>Al + Fe₂O₃ → Al₂O₃ + <b>2</b>Fe — <b>redox</b> (single replacement — thermite!)<br>
+      51. <b>2</b>C₂H₆ + <b>7</b>O₂ → <b>4</b>CO₂ + <b>6</b>H₂O — <b>combustion</b><br>
+      52. AgNO₃ + NaCl → AgCl↓ + NaNO₃ — <b>double replacement</b><br>
+      53. HCl + NH₃ → NH₄Cl — <b>acid/base</b><br>
+      54. <b>2</b>NaClO₃ → <b>2</b>NaCl + <b>3</b>O₂ — <b>decomposition</b><br>
+      55. <b>2</b>Na + <b>2</b>H₂O → <b>2</b>NaOH + H₂ — <b>redox</b> (single replacement)<br>
+      56. CH₄ + <b>2</b>O₂ → CO₂ + <b>2</b>H₂O — <b>combustion</b></div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Precipitates, Net Ionic &amp; Activity Series (57–65)</h3>
+
+    <div class="problem"><div class="p-q"><b>57.</b> Lead(II) nitrate + potassium iodide:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>Molecular:</b> Pb(NO₃)₂(aq) + 2KI(aq) → PbI₂(s) + 2KNO₃(aq) — precipitate: <b>PbI₂ (brilliant yellow!)</b><br>
+      <b>Complete ionic:</b> Pb²⁺(aq) + 2NO₃⁻(aq) + 2K⁺(aq) + 2I⁻(aq) → PbI₂(s) + 2K⁺(aq) + 2NO₃⁻(aq)<br>
+      <b>Net ionic:</b> Pb²⁺(aq) + 2I⁻(aq) → PbI₂(s)</div></div>
+
+    <div class="problem"><div class="p-q"><b>58.</b> Hydrochloric acid + sodium hydroxide:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>Molecular:</b> HCl(aq) + NaOH(aq) → NaCl(aq) + H₂O(l) — <b>no precipitate</b> (product is water)<br>
+      <b>Complete ionic:</b> H⁺ + Cl⁻ + Na⁺ + OH⁻ → Na⁺ + Cl⁻ + H₂O(l)<br>
+      <b>Net ionic:</b> H⁺(aq) + OH⁻(aq) → H₂O(l)</div></div>
+
+    <div class="problem"><div class="p-q"><b>59.</b> Silver(I) nitrate + lithium chloride:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>Molecular:</b> AgNO₃(aq) + LiCl(aq) → AgCl(s) + LiNO₃(aq) — precipitate: <b>AgCl (white)</b><br>
+      <b>Complete ionic:</b> Ag⁺ + NO₃⁻ + Li⁺ + Cl⁻ → AgCl(s) + Li⁺ + NO₃⁻<br>
+      <b>Net ionic:</b> Ag⁺(aq) + Cl⁻(aq) → AgCl(s)</div></div>
+
+    <div class="problem"><div class="p-q"><b>60–65.</b> Activity series — reaction or NR?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">60. Zn + KNO₃ → <b>NR</b> (Zn is below K)<br>
+      61. Ca + Cd(NO₃)₂ → <b>Ca(NO₃)₂ + Cd</b> ✓<br>
+      62. Sn + Pb(NO₃)₂ → <b>Sn(NO₃)₂ + Pb</b> ✓ (Sn just above Pb)<br>
+      63. Cu + Fe(NO₃)₂ → <b>NR</b> (Cu is below Fe)<br>
+      64. Mg + 2HNO₃ → <b>Mg(NO₃)₂ + H₂</b> ✓ (Mg above H)<br>
+      65. Ag + HNO₃ → <b>NR</b> (Ag below H on the activity series)</div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Mole Conversions (66–70)</h3>
+
+    <div class="problem"><div class="p-q"><b>66.</b> Aspartame, C₁₄H₁₈N₂O₅:</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">a. Molar mass = 14(12.011) + 18(1.008) + 2(14.007) + 5(15.999) = 168.15 + 18.14 + 28.01 + 80.00 = <b>294.30 g/mol</b><br>
+      b. 3769.4 g ÷ 294.30 g/mol = <b>12.81 mol</b><br>
+      c. 345.9 g ÷ 294.30 = 1.175 mol × 6.022 × 10²³ = <b>7.078 × 10²³ molecules</b><br>
+      d. 23.6 g ÷ 294.30 = 0.0802 mol × 6.022 × 10²³ × 5 O atoms = <b>2.41 × 10²³ O atoms</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>67.</b> Moles of ammonium ions in 0.557 g of ammonium carbonate?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">(NH₄)₂CO₃ = 96.09 g/mol. 0.557 ÷ 96.09 = 5.80 × 10⁻³ mol × <b>2 NH₄⁺ per formula</b> = <b>1.16 × 10⁻² mol NH₄⁺</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>68.</b> Mass of 0.0438 mol of iron(III) phosphate?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">FePO₄ = 55.845 + 30.974 + 4(15.999) = 150.82 g/mol. 0.0438 × 150.82 = <b>6.61 g</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>69.</b> Mass of 2.69 × 10²³ molecules of aspirin (C₉H₈O₄)?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">2.69 × 10²³ ÷ 6.022 × 10²³ = 0.4467 mol. C₉H₈O₄ = 180.16 g/mol. 0.4467 × 180.16 = <b>80.5 g</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>70.</b> Molar mass of diazepam if 0.05570 mol = 15.86 g?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">15.86 g ÷ 0.05570 mol = <b>284.7 g/mol</b></div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Limiting Reactant &amp; Percent Yield (71–73)</h3>
+
+    <div class="problem"><div class="p-q"><b>71.</b> Grams of NaCl from 10.0 g Na + 10.0 g Cl₂?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">2Na + Cl₂ → 2NaCl.<br>
+      Na: 10.0 ÷ 22.99 = 0.435 mol (÷2 = 0.218) &nbsp;|&nbsp; Cl₂: 10.0 ÷ 70.90 = 0.141 mol (÷1 = 0.141) → <b>Cl₂ limiting</b>.<br>
+      NaCl: 0.141 × 2 = 0.282 mol × 58.44 g/mol = <b>16.5 g NaCl</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>72.</b> Mass of LiOH from 50.0 g Li + 45.0 g H₂O?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">2Li + 2H₂O → 2LiOH + H₂.<br>
+      Li: 50.0 ÷ 6.94 = 7.20 mol &nbsp;|&nbsp; H₂O: 45.0 ÷ 18.02 = 2.50 mol → <b>H₂O limiting</b> (1:1 ratio).<br>
+      LiOH: 2.50 mol × 23.95 g/mol = <b>59.8 g LiOH</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>73.</b> % yield: 68.3 g H₂ + 85.4 g O₂ → 86.4 g H₂O collected?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">2H₂ + O₂ → 2H₂O.<br>
+      H₂: 68.3 ÷ 2.016 = 33.9 mol (÷2 = 16.9) &nbsp;|&nbsp; O₂: 85.4 ÷ 32.00 = 2.67 mol (÷1 = 2.67) → <b>O₂ limiting</b>.<br>
+      Theoretical H₂O = 2.67 × 2 = 5.34 mol × 18.02 = 96.2 g.<br>
+      % yield = 86.4 ÷ 96.2 × 100 = <b>89.8 %</b></div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Molarity (74–78)</h3>
+
+    <div class="problem"><div class="p-q"><b>74.</b> Moles of HCl in 10 mL of 0.6 M HCl?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">mol = M × V = 0.6 × 0.010 L = <b>0.006 mol</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>75.</b> Molarity of 15 mL containing 0.01 mol KOH?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">M = 0.01 mol ÷ 0.015 L = <b>0.67 M</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>76.</b> Volume to make 4 M HNO₃ from 2 moles of acid?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">V = mol ÷ M = 2 ÷ 4 = <b>0.5 L (500 mL)</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>77.</b> Titrating HCl with 0.1 M NaOH, equivalence at 10 mL — concentration of HCl?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">mol NaOH = 0.1 × 0.010 = 0.001 mol = mol HCl (1:1).<br>
+      For a 10 mL HCl sample: M = 0.001 ÷ 0.010 = <b>0.1 M</b></div></div>
+
+    <div class="problem"><div class="p-q"><b>78.</b> Volume of 0.25 M NaOH to neutralize 75 mL of 0.7987 M HI?</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution">M₁V₁ = M₂V₂ → (0.7987)(75) = (0.25)(V) → V = 59.9 ÷ 0.25 = <b>240 mL (0.24 L)</b></div></div>
+  </div>
+
+  <div class="hw-group reveal"><h3>Acids &amp; Bases (79–86)</h3>
+
+    <div class="problem"><div class="p-q"><b>79.</b> HNO₂ + H₂O ⇌ H₃O⁺ + NO₂⁻</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>acid:</b> HNO₂ &nbsp; <b>base:</b> H₂O &nbsp; <b>conj. acid:</b> H₃O⁺ &nbsp; <b>conj. base:</b> NO₂⁻</div></div>
+
+    <div class="problem"><div class="p-q"><b>80.</b> HBrO₄ + H₂O ⇌ H₃O⁺ + BrO₄⁻</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>acid:</b> HBrO₄ &nbsp; <b>base:</b> H₂O &nbsp; <b>conj. acid:</b> H₃O⁺ &nbsp; <b>conj. base:</b> BrO₄⁻</div></div>
+
+    <div class="problem"><div class="p-q"><b>81.</b> H₂O + S²⁻ ⇌ HS⁻ + OH⁻</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>acid:</b> H₂O (donates H⁺ this time!) &nbsp; <b>base:</b> S²⁻ &nbsp; <b>conj. acid:</b> HS⁻ &nbsp; <b>conj. base:</b> OH⁻</div></div>
+
+    <div class="problem"><div class="p-q"><b>82.</b> HSO₄⁻ + C₂O₄²⁻ ⇌ SO₄²⁻ + HC₂O₄⁻</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>acid:</b> HSO₄⁻ &nbsp; <b>base:</b> C₂O₄²⁻ &nbsp; <b>conj. acid:</b> HC₂O₄⁻ &nbsp; <b>conj. base:</b> SO₄²⁻</div></div>
+
+    <div class="problem"><div class="p-q"><b>83.</b> CN⁻ + HC₂H₃O₂ ⇌ HCN + C₂H₃O₂⁻</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>acid:</b> HC₂H₃O₂ &nbsp; <b>base:</b> CN⁻ &nbsp; <b>conj. acid:</b> HCN &nbsp; <b>conj. base:</b> C₂H₃O₂⁻</div></div>
+
+    <div class="problem"><div class="p-q"><b>84.</b> HF + CH₃COO⁻ →</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>HF + CH₃COO⁻ → F⁻ + CH₃COOH</b> — HF donates its proton to acetate.</div></div>
+
+    <div class="problem"><div class="p-q"><b>85.</b> H₂S + CO₃²⁻ →</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>H₂S + CO₃²⁻ → HS⁻ + HCO₃⁻</b> — one proton moves from H₂S to carbonate.</div></div>
+
+    <div class="problem"><div class="p-q"><b>86.</b> NH₄⁺ + F⁻ →</div>
+      <button class="reveal-btn">Show solution</button>
+      <div class="solution"><b>NH₄⁺ + F⁻ → NH₃ + HF</b> — ammonium hands its proton to fluoride.</div></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>⚛️ AP Chem Academy — built for one very lucky AP Chemistry student.<br>
+  <span class="muted">Constants used: c = 3.00×10⁸ m/s · h = 6.626×10⁻³⁴ J·s · Nₐ = 6.022×10²³ /mol</span></p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
